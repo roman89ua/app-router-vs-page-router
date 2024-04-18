@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ReviewDataWithSlug } from "@/components/Review/types";
+import Image from "next/image";
 
 function ReviewThumbnail({
   slug,
@@ -15,7 +16,7 @@ function ReviewThumbnail({
       }}
     >
       <article className="bg-sky-100 border-2 border-sky-300 rounded-lg text-center p-4 shadow hover:shadow-2xl hover:transition hover:ease-in-out hover:duration-300">
-        <img
+        <Image
           className="rounded-lg mb-4"
           src={image}
           alt={`${slug} image`}

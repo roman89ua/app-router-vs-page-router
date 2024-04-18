@@ -1,23 +1,20 @@
-import { getReview, getSlugs } from "@/services/getReviews.service";
+import { getReview, getSlugs } from "@/services/reviews.service";
 import Review from "@/components/Review";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
-type PreviewPageProps = {
+type ReviewPageProps = {
   params: { review: string };
   searchParams: { [key: string]: string | string[] | undefined };
-  parent: ResolvingMetadata;
 };
 
 export async function generateStaticParams() {
   const slugs = await getSlugs();
-  return slugs.map((slug) => ({ slug }));
+  return slugs.map((slug) => ({ review: slug }));
 }
 
 export async function generateMetadata({
   params,
-  // searchParams,
-  // parent,
-}: PreviewPageProps): Promise<Metadata> {
+}: ReviewPageProps): Promise<Metadata> {
   const review = await getReview(params.review);
   const title = review.title;
 
@@ -27,7 +24,7 @@ export async function generateMetadata({
   };
 }
 
-async function ReviewPage({ params }: PreviewPageProps) {
+async function ReviewPage({ params }: ReviewPageProps) {
   const review = await getReview(params.review);
 
   return <Review {...review} />;

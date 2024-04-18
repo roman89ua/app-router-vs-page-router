@@ -1,6 +1,6 @@
 "use client";
 import { LinkIcon } from "@/components/icons/LinkIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ShareLinkBtn() {
   const [clicked, setClicked] = useState(false);

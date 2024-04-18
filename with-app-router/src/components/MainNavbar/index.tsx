@@ -24,7 +24,7 @@ function MainNavbar() {
           </AnchorLink>
         </li>
         <li>
-          <AnchorLink href="/about" prefetch={false}>
+          <AnchorLink href="/about" prefetch={true}>
             About
           </AnchorLink>
         </li>

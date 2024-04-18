@@ -1,6 +1,5 @@
-import Link from "next/link";
 import BiggestHeading from "@/components/BigestHeading";
-import { getReviewsList } from "@/services/getReviews.service";
+import { getReviewsList } from "@/services/reviews.service";
 import ReviewThumbnail from "@/components/Review/ReviewThumbnail";
 import { Metadata } from "next";
 

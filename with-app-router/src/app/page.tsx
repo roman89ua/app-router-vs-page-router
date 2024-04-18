@@ -1,5 +1,5 @@
 import BiggestHeading from "@/components/BigestHeading";
-import { getLatestReview } from "@/services/getReviews.service";
+import { getLatestReview } from "@/services/reviews.service";
 import ReviewThumbnail from "@/components/Review/ReviewThumbnail";
 import { Metadata } from "next";
 
