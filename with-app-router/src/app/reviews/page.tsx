@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 };
 
 async function ReviewsPage() {
-  const reviews = await getReviewsList();
+  const reviews = await getReviewsList(6);
+
   return (
     <section title="Reviews Page" className="m-auto">
       <BiggestHeading className="mb-4">Reviews page</BiggestHeading>
@@ -19,6 +20,8 @@ async function ReviewsPage() {
               slug={review.slug}
               image={review.image}
               title={review.title}
+              subtitle={review.subtitle}
+              priority={index <= 2}
             />
           </li>
         ))}

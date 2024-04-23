@@ -1,5 +1,6 @@
 export type ReviewData = {
   title: string;
+  subtitle: string;
   date: string;
   image: string;
   body: string;

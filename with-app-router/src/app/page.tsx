@@ -1,5 +1,5 @@
 import BiggestHeading from "@/components/BigestHeading";
-import { getLatestReview } from "@/services/reviews.service";
+import { getReviewsList } from "@/services/reviews.service";
 import ReviewThumbnail from "@/components/Review/ReviewThumbnail";
 import { Metadata } from "next";
 
@@ -8,18 +8,25 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const latestReview = await getLatestReview();
+  const latestReviews = await getReviewsList(3);
 
   return (
     <section className="m-auto">
-      <BiggestHeading className="mb-4">Latest review</BiggestHeading>
+      <BiggestHeading className="mb-4">Latest reviews</BiggestHeading>
       <div className="flex justify-start">
-        {!!latestReview ? (
-          <ReviewThumbnail
-            slug={latestReview.slug}
-            image={latestReview.image}
-            title={latestReview.title}
-          />
+        {Array.isArray(latestReviews) && !!latestReviews.length ? (
+          <ul className="flex flex-wrap gap-5 justify-start">
+            {latestReviews.map((review, index) => (
+              <ReviewThumbnail
+                key={review.slug}
+                slug={review.slug}
+                image={review.image}
+                title={review.title}
+                subtitle={review.subtitle}
+                priority={index <= 2}
+              />
+            ))}
+          </ul>
         ) : (
           <p>Sorry, but there is no reviews yet</p>
         )}

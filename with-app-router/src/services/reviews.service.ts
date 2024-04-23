@@ -5,7 +5,7 @@ import {
   ReviewDataWithSlug,
   ReviewsStrapi,
 } from "@/components/Review/types";
-import qs, { BooleanOptional, IStringifyOptions } from "qs";
+import qs from "qs";
 const CMS_URL = "http://localhost:1337";
 
 export async function getReview(slug: string): Promise<ReviewData> {
@@ -27,9 +27,9 @@ export async function getReview(slug: string): Promise<ReviewData> {
   };
 }
 
-export async function getReviewsList(): Promise<
-  Omit<ReviewDataWithSlug, "body">[]
-> {
+export async function getReviewsList(
+  reviewsCount: number,
+): Promise<Omit<ReviewDataWithSlug, "body">[]> {
   const reviews: ReviewsStrapi = await fetchReviews({
     fields: ["slug", "title", "subtitle", "publishedAt"], // can have only needed fields for response like this line;
     // populate: "*", // all extra field populated
@@ -38,7 +38,7 @@ export async function getReviewsList(): Promise<
         fields: ["url", "name"],
       },
     },
-    pagination: { pageSize: 6 },
+    pagination: { pageSize: reviewsCount },
     sort: ["publishedAt:desc"],
   });
 
@@ -56,12 +56,6 @@ export async function getSlugs() {
   return response.data.map((item) => item.attributes.slug);
 }
 
-export async function getLatestReview() {
-  const allReviews = await getReviewsList();
-
-  return allReviews.at(0);
-}
-
 async function fetchReviews(settings: any) {
   const response = await fetch(
     `${CMS_URL}/api/reviews?` +
@@ -74,10 +68,11 @@ async function fetchReviews(settings: any) {
 }
 
 function toReview(responseData: Daum) {
-  const { slug, title, image, publishedAt } = responseData.attributes;
+  const { slug, title, image, publishedAt, subtitle } = responseData.attributes;
   return {
     slug,
     title,
+    subtitle,
     image: CMS_URL + image.data.attributes.url,
     date: publishedAt,
   };
