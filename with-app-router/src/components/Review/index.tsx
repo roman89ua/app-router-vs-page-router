@@ -8,8 +8,8 @@ function Review({ date, image, title, body, subtitle }: ReviewData) {
   return (
     <>
       <BiggestHeading className="mb-4">{title}</BiggestHeading>
-      <h2 className="text-xl">{subtitle}</h2>
-      <div className="flex gap-4 mb-4 items-baseline">
+      <p className="text-xl">{subtitle}</p>
+      <div className="flex gap-4 mb-4 items-baseline my-4">
         <p>{new Date(date).toLocaleDateString()}</p>
         <ShareLinkBtn />
       </div>

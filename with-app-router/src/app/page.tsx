@@ -3,6 +3,8 @@ import { getReviewsList } from "@/services/reviews.service";
 import ReviewThumbnail from "@/components/Review/ReviewThumbnail";
 import { Metadata } from "next";
 
+// export const dynamic = "force-dynamic";
+// export const revalidate = 30;
 export const metadata: Metadata = {
   title: "Home",
 };

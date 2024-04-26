@@ -6,9 +6,11 @@ import {
   ReviewsStrapi,
 } from "@/components/Review/types";
 import qs from "qs";
-const CMS_URL = "http://localhost:1337";
 
-export async function getReview(slug: string): Promise<ReviewData> {
+const CMS_URL = "http://localhost:1337";
+export const CACHE_REVIEW_TAG = "review";
+
+export async function getReview(slug: string): Promise<ReviewData | null> {
   const responseData: ReviewsStrapi = await fetchReviews({
     filters: { slug: { $eq: slug } }, //'filters' but not 'filter'
     fields: ["slug", "title", "subtitle", "body", "publishedAt"], // can have only needed fields for response like this line;
@@ -19,7 +21,13 @@ export async function getReview(slug: string): Promise<ReviewData> {
       },
     },
   });
-  const body = await marked(responseData.data[0].attributes.body);
+
+  if (responseData.data.length === 0) {
+    return null;
+  }
+
+  const firstItem = responseData.data[0];
+  const body = await marked(firstItem?.attributes.body);
 
   return {
     body,
@@ -60,6 +68,7 @@ async function fetchReviews(settings: any) {
   const response = await fetch(
     `${CMS_URL}/api/reviews?` +
       qs.stringify(settings, { encodeValuesOnly: true }),
+    { next: { tags: [CACHE_REVIEW_TAG] } },
   );
 
   const responseData: ReviewsStrapi = await response.json();

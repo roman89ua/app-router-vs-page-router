@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AnchorLink from "@/components/AnchorLink";
 import BiggestHeading from "../BigestHeading";
