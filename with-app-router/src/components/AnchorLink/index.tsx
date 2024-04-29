@@ -1,20 +1,31 @@
+"use client";
+
 import { ReactNode } from "react";
 import { LinkProps } from "next/dist/client/link";
 import Link from "next/link";
+import { activeLinkStyles, linkStyles } from "@/components/styles/link-styles";
+import { usePathname } from "next/navigation";
 
 function AnchorLink({
   children,
   className,
   ...rest
-}: { children: ReactNode; className?: string } & LinkProps) {
+}: {
+  children: ReactNode;
+  className?: string;
+} & LinkProps) {
+  const currentPath = usePathname();
+
+  if (currentPath === rest.href.toString()) {
+    return (
+      <span className={`${activeLinkStyles} font-orbitron ${className}`}>
+        {children}
+      </span>
+    );
+  }
+
   return (
-    <Link
-      className={`text-rose-300 relative before:content-[''] before:absolute before:block before:w-full before:h-[2px]
-        before:bottom-0 before:left-0 before:bg-rose-300
-        before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
-        before:transition before:ease-in-out before:duration-300 ${className}`}
-      {...rest}
-    >
+    <Link className={`${linkStyles} ${className}`} {...rest}>
       {children}
     </Link>
   );

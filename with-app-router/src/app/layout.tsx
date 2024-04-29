@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import MainNavbar from "@/components/MainNavbar";
+import { MainNavbar } from "@/components/MainNavbar";
 import "./globals.css";
 import Anchor from "@/components/Anchor";
 import BiggestHeading from "@/components/BigestHeading";
@@ -8,7 +8,7 @@ import { exo2, orbitron } from "@/app/fonts";
 export const metadata: Metadata = {
   title: {
     default: "RomanGamer",
-    template: "%s | RomanGamer",
+    template: "RomanGamer | %s",
   },
   description: "Games reviews that Roman Kostiuk had played",
   keywords: ["next js", "Roman Kostiuk", "popular games", "games reviews"],

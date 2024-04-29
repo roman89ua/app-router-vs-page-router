@@ -37,7 +37,11 @@ export async function getReview(slug: string): Promise<ReviewData | null> {
 
 export async function getReviewsList(
   reviewsCount: number,
-): Promise<Omit<ReviewDataWithSlug, "body">[]> {
+  page?: number,
+): Promise<{
+  reviews: Omit<ReviewDataWithSlug, "body">[];
+  pageCount: number;
+}> {
   const reviews: ReviewsStrapi = await fetchReviews({
     fields: ["slug", "title", "subtitle", "publishedAt"], // can have only needed fields for response like this line;
     // populate: "*", // all extra field populated
@@ -46,13 +50,16 @@ export async function getReviewsList(
         fields: ["url", "name"],
       },
     },
-    pagination: { pageSize: reviewsCount },
+    pagination: { pageSize: reviewsCount, page },
     sort: ["publishedAt:desc"],
   });
 
-  return reviews.data.map(
-    (obj): Omit<ReviewDataWithSlug, "body"> => toReview(obj),
-  );
+  return {
+    reviews: reviews.data.map(
+      (obj): Omit<ReviewDataWithSlug, "body"> => toReview(obj),
+    ),
+    pageCount: reviews.meta.pagination.pageCount,
+  };
 }
 
 export async function getSlugs() {

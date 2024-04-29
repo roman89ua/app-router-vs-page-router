@@ -3,22 +3,24 @@ import { getReviewsList } from "@/services/reviews.service";
 import ReviewThumbnail from "@/components/Review/ReviewThumbnail";
 import { Metadata } from "next";
 
-// export const dynamic = "force-dynamic";
-// export const revalidate = 30;
+// export const dynamic = "force-dynamic"; //dynamic rendering of the page
+// export const revalidate = 30; //revalidation by type ends
 export const metadata: Metadata = {
   title: "Home",
 };
 
+const ITEMS_PER_PAGE = 3;
+
 export default async function Home() {
-  const latestReviews = await getReviewsList(3);
+  const { reviews } = await getReviewsList(ITEMS_PER_PAGE);
 
   return (
     <section className="m-auto">
       <BiggestHeading className="mb-4">Latest reviews</BiggestHeading>
       <div className="flex justify-start">
-        {Array.isArray(latestReviews) && !!latestReviews.length ? (
+        {Array.isArray(reviews) && !!reviews.length ? (
           <ul className="flex flex-wrap gap-5 justify-start">
-            {latestReviews.map((review, index) => (
+            {reviews.map((review, index) => (
               <ReviewThumbnail
                 key={review.slug}
                 slug={review.slug}
