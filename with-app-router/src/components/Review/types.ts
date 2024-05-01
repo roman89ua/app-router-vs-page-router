@@ -10,6 +10,8 @@ export type ReviewDataWithSlug = {
   slug: string;
 } & ReviewData;
 
+export type SuggestionsReviewInfo = Pick<ReviewDataWithSlug, "slug" | "title">;
+
 // fetch types for reviews from strapi directly
 
 export interface ReviewsStrapi {

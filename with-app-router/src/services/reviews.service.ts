@@ -4,6 +4,7 @@ import {
   ReviewData,
   ReviewDataWithSlug,
   ReviewsStrapi,
+  SuggestionsReviewInfo,
 } from "@/components/Review/types";
 import qs from "qs";
 
@@ -60,6 +61,25 @@ export async function getReviewsList(
     ),
     pageCount: reviews.meta.pagination.pageCount,
   };
+}
+
+export async function getReviewsSuggestions(
+  query: string,
+): Promise<SuggestionsReviewInfo[]> {
+  const response: ReviewsStrapi = await fetchReviews({
+    filters: { title: { $containsi: query } },
+    fields: ["slug", "title"],
+    pagination: { pageSize: 10 },
+    sort: ["title"],
+  });
+
+  return response.data.map(({ attributes }) => {
+    const { slug, title } = attributes;
+    return {
+      slug,
+      title,
+    };
+  });
 }
 
 export async function getSlugs() {

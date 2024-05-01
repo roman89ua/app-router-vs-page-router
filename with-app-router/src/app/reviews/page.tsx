@@ -1,8 +1,12 @@
 import BiggestHeading from "@/components/BigestHeading";
-import { getReviewsList } from "@/services/reviews.service";
+import {
+  getReviewsList,
+  getReviewsSuggestions,
+} from "@/services/reviews.service";
 import ReviewThumbnail from "@/components/Review/ReviewThumbnail";
 import { Metadata, ResolvingMetadata } from "next";
 import { PaginationBar } from "@/components/PaginationBar";
+import ReviewSearch from "@/components/ReviewSearch";
 
 // export const dynamic = "force-dynamic";
 
@@ -38,11 +42,17 @@ async function ReviewsPage({
   return (
     <section title="Reviews Page" className="m-auto">
       <BiggestHeading className="mb-4">Reviews page</BiggestHeading>
-      <PaginationBar
-        currentPage={page}
-        pageCount={pageCount}
-        path={"/reviews"}
-      />
+      <section
+        title="pagination and search section"
+        className="flex items-center flex-col justify-center md:flex-row md:justify-between md:items-center py-4"
+      >
+        <ReviewSearch />
+        <PaginationBar
+          currentPage={page}
+          pageCount={pageCount}
+          path={"/reviews"}
+        />
+      </section>
       <ul className="flex flex-wrap gap-5 justify-start">
         {reviews.map((review, index) => (
           <li key={review.title + index}>
