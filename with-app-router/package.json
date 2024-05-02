@@ -30,6 +30,7 @@
     "lodash": "^4.17.21",
     "postcss": "^8",
     "prettier": "3.2.5",
+    "server-only": "^0.0.1",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }

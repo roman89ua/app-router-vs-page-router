@@ -1,3 +1,4 @@
+import "server-only";
 import { marked } from "marked";
 import {
   Daum,
