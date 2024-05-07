@@ -7,8 +7,7 @@ import { SuggestionsReviewInfo } from "@/components/Review/types";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import { buttonWithLiftEffect } from "@/components/styles/button-styles";
 import { useRouter } from "next/navigation";
-import { getReviewsSuggestions } from "@/services/reviews.service";
-import { debounce, throttle } from "lodash";
+import { debounce } from "lodash";
 
 export default function ReviewSearch() {
   const isClient = useIsClient();
@@ -25,14 +24,15 @@ export default function ReviewSearch() {
       let reviews;
 
       try {
-        reviews = await fetch(
+        const response = await fetch(
           "/api/reviews-suggestions?query=" + encodeURIComponent(queryString),
         );
+        reviews = await response.json();
       } catch (e) {
         console.error(e);
       }
 
-      setSearchSuggestions((reviews ?? []) as SuggestionsReviewInfo[]);
+      setSearchSuggestions(reviews ?? []);
     }, 750),
   ).current;
 
