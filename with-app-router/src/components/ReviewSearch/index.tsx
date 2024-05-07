@@ -2,7 +2,7 @@
 
 import { Combobox } from "@headlessui/react";
 import { useIsClient } from "@/app/hooks/useIsClient";
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { SuggestionsReviewInfo } from "@/components/Review/types";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import { buttonWithLiftEffect } from "@/components/styles/button-styles";
