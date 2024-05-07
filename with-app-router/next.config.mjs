@@ -1,5 +1,6 @@
 
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
     // next line can be used for to export project as static website + build in out folder
     // output: "export"
@@ -15,17 +16,21 @@ const nextConfig = {
 
 
         remotePatterns: [
-
-            {
-                protocol: "http",
-                hostname: 'localhost',
-                port: '1337',
-                pathname: "/uploads/**",
-            }
-
+            toRemotePattern(process.env.CMS_IMAGES_URL),
         ]
 
     }
 };
+
+function toRemotePattern(urlString) {
+    const urlObject = new URL(urlString);
+
+    return {
+        protocol: urlObject.protocol.replace(":", ""),
+        hostname: urlObject.hostname,
+        port: urlObject.port ,
+        pathname: urlObject.pathname,
+    }
+}
 
 export default nextConfig;
