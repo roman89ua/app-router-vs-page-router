@@ -5,7 +5,7 @@ import { useIsClient } from "@/app/hooks/useIsClient";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { SuggestionsReviewInfo } from "@/components/Review/types";
 import { CheckIcon } from "@heroicons/react/16/solid";
-import { buttonWithLiftEffect } from "@/components/styles/button-styles";
+import { elementWithLiftEffect } from "@/components/styles/button-styles";
 import { useRouter } from "next/navigation";
 import { debounce } from "lodash";
 
@@ -63,7 +63,7 @@ export default function ReviewSearch() {
         <Combobox.Input
           onChange={onType}
           placeholder="search..."
-          className={` ${buttonWithLiftEffect} focus-visible:outline-sky-300 w-full`}
+          className={` ${elementWithLiftEffect} focus-visible:outline-sky-400 w-full`}
         />
         <Combobox.Options className="absolute bg-white w-full py-3 shadow-xl max-h-80 overflow-y-auto overscroll-y-auto">
           {searchSuggestions.map((review) => {

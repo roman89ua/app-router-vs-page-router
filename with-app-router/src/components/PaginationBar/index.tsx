@@ -2,7 +2,7 @@ import Link, { LinkProps } from "next/link";
 import React, { ReactNode } from "react";
 import { ChevronLeftIcon } from "@/components/icons/ChevronLeftIcon";
 import { ChevronRightIcon } from "@/components/icons/ChevronRightIcon";
-import { buttonWithLiftEffect } from "@/components/styles/button-styles";
+import { elementWithLiftEffect } from "@/components/styles/button-styles";
 
 export function PaginationBar({
   path,
@@ -52,12 +52,12 @@ function PaginationLink({
       {disabled ? (
         <span
           aria-disabled={disabled}
-          className={`cursor-auto text-neutral-300 ${buttonWithLiftEffect} ${className}`}
+          className={`cursor-auto text-neutral-300 ${elementWithLiftEffect} ${className}`}
         >
           {children}
         </span>
       ) : (
-        <Link className={`${buttonWithLiftEffect} ${className}`} {...rest}>
+        <Link className={`${elementWithLiftEffect} ${className}`} {...rest}>
           {children}
         </Link>
       )}

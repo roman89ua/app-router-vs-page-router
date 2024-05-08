@@ -1,7 +1,7 @@
 "use client";
 import { LinkIcon } from "@/components/icons/LinkIcon";
 import { useState } from "react";
-import { buttonWithLiftEffect } from "@/components/styles/button-styles";
+import { elementWithLiftEffect } from "@/components/styles/button-styles";
 
 function ShareLinkBtn() {
   const [clicked, setClicked] = useState(false);
@@ -13,7 +13,7 @@ function ShareLinkBtn() {
   };
 
   return (
-    <button onClick={clickHandler} className={buttonWithLiftEffect}>
+    <button onClick={clickHandler} className={elementWithLiftEffect}>
       <LinkIcon className="w-4 h-4" />{" "}
       {clicked ? "Copied to clipboard" : `Share link`}
     </button>

@@ -2,6 +2,8 @@ import { getReview, getSlugs } from "@/services/reviews.service";
 import Review from "@/components/Review";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
+import { CommentForm, CommentList } from "@/components/Comment";
 
 type ReviewPageProps = {
   params: { review: string };
@@ -39,7 +41,19 @@ async function ReviewPage({ params }: ReviewPageProps) {
     notFound();
   }
 
-  return <Review {...review} />;
+  return (
+    <>
+      <Review {...review} />
+      <section className="border-dashed border-t max-w-screen-sm mt-3 py-3 m-auto">
+        <h2 className="font-bold flex gap-2 items-center text-xl">
+          <ChatBubbleBottomCenterTextIcon className="h-6 w-6" />
+          Comments
+        </h2>
+        <CommentForm title={review.title} />
+        <CommentList />
+      </section>
+    </>
+  );
 }
 
 export default ReviewPage;
