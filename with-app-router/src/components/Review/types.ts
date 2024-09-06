@@ -1,9 +1,11 @@
 export type ReviewData = {
+  id: number;
   title: string;
   subtitle: string;
   date: string;
   image: string;
   body: string;
+  comments: ModifiedComments;
 };
 
 export type ReviewDataWithSlug = {
@@ -15,16 +17,13 @@ export type SuggestionsReviewInfo = Pick<ReviewDataWithSlug, "slug" | "title">;
 // fetch types for reviews from strapi directly
 
 export interface ReviewsStrapi {
-  data: Daum[];
+  data: ReviewsAttributes;
   meta: Meta;
 }
 
-export interface Daum {
-  id: number;
-  attributes: ReviewsAttributes;
-}
+export type ReviewsAttributes = Array<Data<ReviewsAttribute>>;
 
-export interface ReviewsAttributes {
+export interface ReviewsAttribute {
   slug: string;
   title: string;
   body: string;
@@ -33,18 +32,27 @@ export interface ReviewsAttributes {
   publishedAt: string;
   subtitle: string;
   image: Image;
+  comments: ReviewComments;
 }
 
 export interface Image {
-  data: Data;
+  data: Data<ImageDataObject>;
 }
 
-export interface Data {
+export type ReviewComments = {
+  data: Array<Data<ReviewComment>>;
+};
+
+export type ModifiedComments = Array<ModifiedComment>;
+
+export type ModifiedComment = ReviewComment & Pick<Data<ReviewComment>, "id">;
+
+export interface Data<T> {
   id: number;
-  attributes: Attributes2;
+  attributes: T;
 }
 
-export interface Attributes2 {
+export interface ImageDataObject {
   name: string;
   alternativeText: any;
   caption: any;
@@ -61,6 +69,14 @@ export interface Attributes2 {
   provider_metadata: any;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ReviewComment {
+  message: string;
+  username: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
 }
 
 export interface Formats {
