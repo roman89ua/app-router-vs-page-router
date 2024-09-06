@@ -9,15 +9,21 @@ function ReviewThumbnail({
   title,
   priority,
   subtitle,
-}: Omit<ReviewDataWithSlug, "body" | "date"> & { priority?: boolean }) {
+}: Omit<ReviewDataWithSlug, "body" | "date" | "comments" | "id"> & {
+  priority?: boolean;
+}) {
   return (
     <Link
-      className="block w-fit "
+      className="block w-fit"
       href={{
         pathname: `/reviews/${slug}`,
       }}
     >
-      <article className="flex flex-col w-96 items-center justify-center bg-sky-100 border-2 border-sky-300 rounded-lg text-center p-4 shadow hover:shadow-2xl hover:transition hover:ease-in-out hover:duration-300">
+      <article
+        className={`flex flex-col w-96 items-center justify-center 
+          bg-sky-100 border-2 border-sky-300 rounded-lg text-center
+          p-4 shadow hover:shadow-2xl hover:transition hover:ease-in-out hover:duration-300 h-full`}
+      >
         <Image
           priority={priority}
           className="rounded-lg mb-4"
