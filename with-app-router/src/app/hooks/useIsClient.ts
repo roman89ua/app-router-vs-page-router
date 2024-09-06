@@ -6,7 +6,7 @@ export const useIsClient = () => {
   const [isClient, setIsClient] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!isClient) setIsClient(true);
+    if (typeof window !== "undefined" && !isClient) setIsClient(true);
   }, []);
 
   return isClient;
