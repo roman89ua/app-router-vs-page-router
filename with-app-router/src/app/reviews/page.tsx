@@ -7,6 +7,7 @@ import ReviewThumbnail from "@/components/Review/ReviewThumbnail";
 import { Metadata, ResolvingMetadata } from "next";
 import { PaginationBar } from "@/components/PaginationBar";
 import ReviewSearch from "@/components/ReviewSearch";
+import ReviewsList from "@/components/ReviewsList";
 
 // export const dynamic = "force-dynamic";
 
@@ -26,7 +27,7 @@ export const generateMetadata = async (
   };
 };
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 6;
 
 async function ReviewsPage({
   searchParams,
@@ -53,24 +54,13 @@ async function ReviewsPage({
           path={"/reviews"}
         />
       </section>
-      <ul className="flex flex-wrap gap-5 justify-start">
-        {reviews.map((review, index) => (
-          <li key={review.title + index}>
-            <ReviewThumbnail
-              slug={review.slug}
-              image={review.image}
-              title={review.title}
-              subtitle={review.subtitle}
-              priority={index <= 2}
-            />
-          </li>
-        ))}
-      </ul>
+      <ReviewsList reviews={reviews} />
     </section>
   );
 }
 
 export default ReviewsPage;
+
 function parsePageParam(param: string = "") {
   if (!!param) {
     const page = parseInt(param);

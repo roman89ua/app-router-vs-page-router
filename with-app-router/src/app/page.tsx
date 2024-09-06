@@ -1,7 +1,7 @@
 import BiggestHeading from "@/components/BigestHeading";
 import { getReviewsList } from "@/services/reviews.service";
-import ReviewThumbnail from "@/components/Review/ReviewThumbnail";
 import { Metadata } from "next";
+import ReviewsList from "@/components/ReviewsList";
 
 // export const dynamic = "force-dynamic"; //dynamic rendering of the page
 // export const revalidate = 30; //revalidation by type ends
@@ -18,22 +18,7 @@ export default async function Home() {
     <section className="m-auto">
       <BiggestHeading className="mb-4">Latest reviews</BiggestHeading>
       <div className="flex justify-start">
-        {Array.isArray(reviews) && !!reviews.length ? (
-          <ul className="flex flex-wrap gap-5 justify-start">
-            {reviews.map((review, index) => (
-              <ReviewThumbnail
-                key={review.slug}
-                slug={review.slug}
-                image={review.image}
-                title={review.title}
-                subtitle={review.subtitle}
-                priority={index <= 2}
-              />
-            ))}
-          </ul>
-        ) : (
-          <p>Sorry, but there is no reviews yet</p>
-        )}
+        <ReviewsList reviews={reviews} />
       </div>
     </section>
   );
