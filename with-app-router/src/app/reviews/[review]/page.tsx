@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
 import { CommentForm, CommentList } from "@/components/Comment";
+import { dictionary } from "@/app/utils/dictionary";
 
 type ReviewPageProps = {
   params: { review: string };
@@ -47,10 +48,14 @@ async function ReviewPage({ params }: ReviewPageProps) {
       <section className="border-dashed border-t max-w-screen-sm mt-3 py-3 m-auto">
         <h2 className="font-bold flex gap-2 items-center text-xl">
           <ChatBubbleBottomCenterTextIcon className="h-6 w-6" />
-          Comments
+          {dictionary.reviewPage.commentsHeading}
         </h2>
-        <CommentForm title={review.title} />
-        <CommentList />
+        <CommentForm
+          title={review?.title}
+          slug={params.review}
+          reviewId={review?.id}
+        />
+        <CommentList comments={review.comments} />
       </section>
     </>
   );

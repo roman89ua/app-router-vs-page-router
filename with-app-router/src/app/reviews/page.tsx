@@ -1,9 +1,5 @@
 import BiggestHeading from "@/components/BigestHeading";
-import {
-  getReviewsList,
-  getReviewsSuggestions,
-} from "@/services/reviews.service";
-import ReviewThumbnail from "@/components/Review/ReviewThumbnail";
+import { getReviewsList } from "@/services/reviews.service";
 import { Metadata, ResolvingMetadata } from "next";
 import { PaginationBar } from "@/components/PaginationBar";
 import ReviewSearch from "@/components/ReviewSearch";
