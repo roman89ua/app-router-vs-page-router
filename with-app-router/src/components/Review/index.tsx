@@ -3,6 +3,7 @@ import BiggestHeading from "@/components/BigestHeading";
 import { ReviewData } from "@/components/Review/types";
 import ShareLinkBtn from "@/components/buttons/ShareLinkBtn";
 import Image from "next/image";
+import NoImagePlaceholder from "@/components/shared/NoImagePlacehoder";
 
 function Review({ date, image, title, body, subtitle }: ReviewData) {
   return (
@@ -13,15 +14,22 @@ function Review({ date, image, title, body, subtitle }: ReviewData) {
         <p>{new Date(date).toLocaleDateString()}</p>
         <ShareLinkBtn />
       </div>
-      <article className="bg-sky-100 border-2 border-sky-300 rounded-lg text-center p-8 shadow ">
+      <article className="bg-sky-100 border-2 border-sky-300 rounded-lg text-center p-8 shadow">
         <div>
-          <Image
-            className="rounded-lg lg:float-left pb-8 lg:pr-8"
-            src={image}
-            alt="stardew valley image"
-            width={600}
-            height={330}
-          />
+          <div className="rounded-lg lg:float-left pb-8 lg:pr-8 overflow-hidden">
+            {image ? (
+              <Image
+                className=""
+                src={image}
+                alt={`${title}. ${title} image`}
+                width={600}
+                height={330}
+                priority
+              />
+            ) : (
+              <NoImagePlaceholder />
+            )}
+          </div>
           <article
             className=" self-start text-left"
             dangerouslySetInnerHTML={{ __html: body }}

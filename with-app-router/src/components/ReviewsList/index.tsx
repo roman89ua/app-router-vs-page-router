@@ -17,7 +17,7 @@ const ReviewsList = ({
               image={review.image}
               title={review.title}
               subtitle={review.subtitle}
-              priority={index <= 2}
+              priority={index <= 5}
             />
           ))}
         </ul>
