@@ -1,0 +1,8 @@
+
+# Run checks for project with app router
+cd with-app-router && echo "checking project 'with-app-route'"
+cd ..
+
+# Run checks for project with page router
+cd with-page-router && echo "checking project 'with-page-route'"
+cd ..

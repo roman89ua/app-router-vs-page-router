@@ -1,0 +1,13 @@
+{
+  "name": "app-router-vs-page-router",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "prepare": "husky"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^9.1.6"
+  }
+}
