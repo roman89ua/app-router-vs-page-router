@@ -1,0 +1,8 @@
+
+# Run checks for WITH-APP-ROUTER project
+cd with-app-router && echo "checking project 'WITH-APP-ROUTER'" && npm run lint
+cd ..
+
+# Run checks for WITH-PAGE-ROUTER project
+cd with-page-router && echo "checking project 'WITH-PAGE-ROUTER'"
+cd ..
