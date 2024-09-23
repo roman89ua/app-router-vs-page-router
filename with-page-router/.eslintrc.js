@@ -9,7 +9,6 @@ module.exports = {
     "airbnb",
     "prettier",
   ],
-  plugins: ["prettier"],
   overrides: [
     {
       files: ["**.ts", "**.tsx"],
@@ -17,7 +16,6 @@ module.exports = {
       parserOptions: {
         project: "./tsconfig.json",
       },
-      extends: ["plugin:@typescript-eslint/recommended", "prettier"],
     },
   ],
   parserOptions: {
@@ -26,7 +24,6 @@ module.exports = {
   },
   rules: {
     "react/jsx-props-no-spreading": "off",
-    "import/prefer-default-export": "off",
     "react/jsx-filename-extension": [
       1,
       {
@@ -44,7 +41,6 @@ module.exports = {
         tsx: "never",
       },
     ],
-    "prettier/prettier": "error",
   },
   settings: {
     react: {

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
