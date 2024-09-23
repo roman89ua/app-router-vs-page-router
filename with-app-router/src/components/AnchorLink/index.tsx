@@ -31,4 +31,8 @@ function AnchorLink({
   );
 }
 
+AnchorLink.defaultProps = {
+  className: "",
+};
+
 export default AnchorLink;

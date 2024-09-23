@@ -22,9 +22,9 @@ export function CommentForm({ title, slug, reviewId }: CommentFormProps) {
   return (
     <form
       onSubmit={submitHandler}
-      className="border-2 border-sky-300 bg-white flex flex-col gap-2 mt-3 px-3 py-3 rounded-lg"
+      className='border-2 border-sky-300 bg-white flex flex-col gap-2 mt-3 px-3 py-3 rounded-lg'
     >
-      <p className="pb-1">
+      <p className='pb-1'>
         {dictionary.reviewCommentForm.alreadyPlayed} <strong>{title}</strong>
         {dictionary.common.questionMark}{" "}
         {dictionary.reviewCommentForm.haveYouSay}
@@ -33,12 +33,12 @@ export function CommentForm({ title, slug, reviewId }: CommentFormProps) {
       <input
         id={RELATED_REVIEW}
         name={RELATED_REVIEW}
-        type="hidden"
+        type='hidden'
         defaultValue={reviewId}
       />
-      <input id={SLUG} name={SLUG} type="hidden" defaultValue={slug} />
-      <div className="flex">
-        <label htmlFor={USERNAME} className="shrink-0 w-32">
+      <input id={SLUG} name={SLUG} type='hidden' defaultValue={slug} />
+      <div className='flex'>
+        <label htmlFor={USERNAME} className='shrink-0 w-32'>
           {dictionary.reviewCommentForm.nameInputLabel}
         </label>
         <input
@@ -50,8 +50,8 @@ export function CommentForm({ title, slug, reviewId }: CommentFormProps) {
           minLength={2}
         />
       </div>
-      <div className="flex">
-        <label htmlFor={MESSAGE} className="shrink-0 w-32">
+      <div className='flex'>
+        <label htmlFor={MESSAGE} className='shrink-0 w-32'>
           {dictionary.reviewCommentForm.commentInputLabel}
         </label>
         <textarea
@@ -64,10 +64,10 @@ export function CommentForm({ title, slug, reviewId }: CommentFormProps) {
         />
       </div>
       {state.error?.isError && (
-        <p className="text-red-600">{state.error.message}</p>
+        <p className='text-red-600'>{state.error.message}</p>
       )}
       <button
-        type="submit"
+        type='submit'
         className={`${elementWithLiftEffect} w-fit self-center disabled:bg-rose-300 disabled:cursor-no-drop`}
         disabled={state.isLoading}
       >

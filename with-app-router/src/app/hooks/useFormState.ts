@@ -7,7 +7,7 @@ type useFormState = {
 };
 
 export const useFormState = (
-  action: (formData: FormData) => Promise<ErrorType>,
+  action: (formData: FormData) => Promise<ErrorType>
 ) => {
   const [state, setState] = useState<useFormState>({
     isLoading: false,

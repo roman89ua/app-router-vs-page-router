@@ -12,11 +12,11 @@ export async function POST(request: NextRequest) {
   const requestData = await request.json();
 
   const events: ReviewRevalidationTriggers[] = Object.values(
-    ReviewRevalidationTriggers,
+    ReviewRevalidationTriggers
   );
 
   const isRevalidateEventForReviews = events.some((element) =>
-    (requestData.event as string).endsWith(element),
+    (requestData.event as string).endsWith(element)
   );
 
   if (requestData.model === CACHE_REVIEW_TAG && isRevalidateEventForReviews) {

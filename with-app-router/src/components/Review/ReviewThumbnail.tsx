@@ -15,7 +15,7 @@ function ReviewThumbnail({
 }) {
   return (
     <Link
-      className="block w-fit"
+      className='block w-fit'
       href={{
         pathname: `/reviews/${slug}`,
       }}
@@ -28,7 +28,7 @@ function ReviewThumbnail({
         {image ? (
           <Image
             priority={priority}
-            className="rounded-lg mb-4"
+            className='rounded-lg mb-4'
             src={image}
             alt={`${slug} image`}
             width={320}
@@ -37,13 +37,17 @@ function ReviewThumbnail({
         ) : (
           <NoImagePlaceholder />
         )}
-        <div className="flex flex-col">
-          <h2 className="text-xl font-bold">{title}</h2>
-          <p className="text-xs hidden sm:block">{subtitle}</p>
+        <div className='flex flex-col'>
+          <h2 className='text-xl font-bold'>{title}</h2>
+          <p className='text-xs hidden sm:block'>{subtitle}</p>
         </div>
       </article>
     </Link>
   );
 }
+
+ReviewThumbnail.defaultProps = {
+  priority: false,
+};
 
 export default ReviewThumbnail;

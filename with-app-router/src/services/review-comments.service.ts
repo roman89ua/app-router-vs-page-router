@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import "server-only";
 
 export type CommentInputType = {
@@ -7,7 +8,7 @@ export type CommentInputType = {
   slug: string;
 };
 
-const CMS_URL = process.env.CMS_URL;
+const { CMS_URL } = process.env;
 
 export async function addComment(data: CommentInputType) {
   try {
@@ -22,5 +23,6 @@ export async function addComment(data: CommentInputType) {
     return await response.json();
   } catch (error) {
     console.error(error);
+    return error;
   }
 }

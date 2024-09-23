@@ -27,7 +27,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const title = review.title;
+  const { title } = review;
 
   return {
     title,
@@ -45,9 +45,9 @@ async function ReviewPage({ params }: ReviewPageProps) {
   return (
     <>
       <Review {...review} />
-      <section className="border-dashed border-t max-w-screen-sm mt-3 py-3 m-auto">
-        <h2 className="font-bold flex gap-2 items-center text-xl">
-          <ChatBubbleBottomCenterTextIcon className="h-6 w-6" />
+      <section className='border-dashed border-t max-w-screen-sm mt-3 py-3 m-auto'>
+        <h2 className='font-bold flex gap-2 items-center text-xl'>
+          <ChatBubbleBottomCenterTextIcon className='h-6 w-6' />
           {dictionary.reviewPage.commentsHeading}
         </h2>
         <CommentForm

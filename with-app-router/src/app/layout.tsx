@@ -20,16 +20,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${orbitron.variable} ${exo2.variable}`}>
-      <body className="min-h-screen flex flex-col">
-        <header className="px-4 py-8 border-b-2 text-sky-50 bg-blue-900 bg-gradient-to-r from-sky-900 to-blue-500">
+    <html lang='en' className={`${orbitron.variable} ${exo2.variable}`}>
+      <body className='min-h-screen flex flex-col'>
+        <header className='px-4 py-8 border-b-2 text-sky-50 bg-blue-900 bg-gradient-to-r from-sky-900 to-blue-500'>
           <MainNavbar />
         </header>
-        <main className="grow px-4 py-8">{children}</main>
-        <footer className="px-4 py-8 text-center border-t-2 text-sky-50 bg-gradient-to-r from-blue-500 to-sky-900">
+        <main className='grow px-4 py-8'>{children}</main>
+        <footer className='px-4 py-8 text-center border-t-2 text-sky-50 bg-gradient-to-r from-blue-500 to-sky-900'>
           <BiggestHeading>FOOTER</BiggestHeading>
           Data was fetched from{" "}
-          <Anchor href="https://rawg.io/" target="_blank">
+          <Anchor href='https://rawg.io/' target='_blank'>
             RAWG
           </Anchor>
         </footer>

@@ -1,3 +1,24 @@
+export interface ReviewComment {
+  message: string;
+  username: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+export interface Data<T> {
+  id: number;
+  attributes: T;
+}
+
+export type ReviewComments = {
+  data: Array<Data<ReviewComment>>;
+};
+
+export type ModifiedComment = ReviewComment & Pick<Data<ReviewComment>, "id">;
+
+export type ModifiedComments = Array<ModifiedComment>;
+
 export type ReviewData = {
   id: number;
   title: string;
@@ -14,14 +35,83 @@ export type ReviewDataWithSlug = {
 
 export type SuggestionsReviewInfo = Pick<ReviewDataWithSlug, "slug" | "title">;
 
-// fetch types for reviews from strapi directly
-
-export interface ReviewsStrapi {
-  data: ReviewsAttributes;
-  meta: Meta;
+export interface Thumbnail {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path: unknown;
+  width: number;
+  height: number;
+  size: number;
+  url: string;
 }
 
-export type ReviewsAttributes = Array<Data<ReviewsAttribute>>;
+export interface Small {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path: unknown;
+  width: number;
+  height: number;
+  size: number;
+  url: string;
+}
+
+export interface Medium {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path: unknown;
+  width: number;
+  height: number;
+  size: number;
+  url: string;
+}
+
+export interface Large {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path: unknown;
+  width: number;
+  height: number;
+  size: number;
+  url: string;
+}
+
+export interface Formats {
+  thumbnail: Thumbnail;
+  small: Small;
+  medium: Medium;
+  large: Large;
+}
+
+export interface ImageDataObject {
+  name: string;
+  alternativeText: unknown;
+  caption: unknown;
+  width: number;
+  height: number;
+  formats: Formats;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl: unknown;
+  provider: string;
+  provider_metadata: unknown;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Image {
+  data: Data<ImageDataObject>;
+}
 
 export interface ReviewsAttribute {
   slug: string;
@@ -35,112 +125,20 @@ export interface ReviewsAttribute {
   comments: ReviewComments;
 }
 
-export interface Image {
-  data: Data<ImageDataObject>;
-}
-
-export type ReviewComments = {
-  data: Array<Data<ReviewComment>>;
-};
-
-export type ModifiedComments = Array<ModifiedComment>;
-
-export type ModifiedComment = ReviewComment & Pick<Data<ReviewComment>, "id">;
-
-export interface Data<T> {
-  id: number;
-  attributes: T;
-}
-
-export interface ImageDataObject {
-  name: string;
-  alternativeText: any;
-  caption: any;
-  width: number;
-  height: number;
-  formats: Formats;
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl: any;
-  provider: string;
-  provider_metadata: any;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface ReviewComment {
-  message: string;
-  username: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-}
-
-export interface Formats {
-  thumbnail: Thumbnail;
-  small: Small;
-  medium: Medium;
-  large: Large;
-}
-
-export interface Thumbnail {
-  name: string;
-  hash: string;
-  ext: string;
-  mime: string;
-  path: any;
-  width: number;
-  height: number;
-  size: number;
-  url: string;
-}
-
-export interface Small {
-  name: string;
-  hash: string;
-  ext: string;
-  mime: string;
-  path: any;
-  width: number;
-  height: number;
-  size: number;
-  url: string;
-}
-
-export interface Medium {
-  name: string;
-  hash: string;
-  ext: string;
-  mime: string;
-  path: any;
-  width: number;
-  height: number;
-  size: number;
-  url: string;
-}
-
-export interface Large {
-  name: string;
-  hash: string;
-  ext: string;
-  mime: string;
-  path: any;
-  width: number;
-  height: number;
-  size: number;
-  url: string;
-}
-
-export interface Meta {
-  pagination: Pagination;
-}
+export type ReviewsAttributes = Array<Data<ReviewsAttribute>>;
 
 export interface Pagination {
   page: number;
   pageSize: number;
   pageCount: number;
   total: number;
+}
+
+export interface Meta {
+  pagination: Pagination;
+}
+
+export interface ReviewsStrapi {
+  data: ReviewsAttributes;
+  meta: Meta;
 }

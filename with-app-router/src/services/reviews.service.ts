@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import "server-only";
 
 import { marked } from "marked";
@@ -11,12 +12,42 @@ import {
 } from "@/components/Review/types";
 import qs from "qs";
 
-const CMS_URL = process.env.CMS_URL;
+const { CMS_URL } = process.env;
 export const CACHE_REVIEW_TAG = "review";
 
-export async function getReview(slug: string): Promise<ReviewData | undefined> {
+function toReview(
+  responseData: Data<ReviewsAttribute>
+): Omit<ReviewDataWithSlug, "body"> {
+  return {
+    id: responseData?.id,
+    slug: responseData?.attributes?.slug,
+    title: responseData?.attributes?.title,
+    subtitle: responseData?.attributes?.subtitle,
+    image:
+      CMS_URL + (responseData?.attributes?.image.data.attributes.url || ""),
+    date: responseData?.attributes?.publishedAt,
+    comments: responseData?.attributes?.comments
+      ? responseData?.attributes?.comments?.data.map((comment) => ({
+          id: comment.id,
+          ...comment.attributes,
+        }))
+      : [],
+  };
+}
+
+async function fetchReviews(settings: unknown) {
+  const response = await fetch(
+    `${CMS_URL}/api/reviews?${qs.stringify(settings, {
+      encodeValuesOnly: true,
+    })}`,
+    { next: { tags: [CACHE_REVIEW_TAG] } }
+  );
+  return response.json();
+}
+
+export async function getReview(slug: string): Promise<ReviewData> {
   const responseData: ReviewsStrapi = await fetchReviews({
-    filters: { slug: { $eq: slug } }, //'filters' but not 'filter'
+    filters: { slug: { $eq: slug } }, // 'filters' but not 'filter'
     fields: ["slug", "title", "subtitle", "body", "publishedAt"], // can have only needed fields for response like this line;
     // populate: "*", // all extra field populated
     populate: {
@@ -35,22 +66,34 @@ export async function getReview(slug: string): Promise<ReviewData | undefined> {
     },
   });
 
-  if (responseData.data.length > 0) {
-    const firstItem = responseData.data[0];
+  const defaultResponse = {
+    body: "",
+    title: "",
+    comments: [],
+    id: 0,
+    subtitle: "",
+    image: "",
+    date: "",
+  } as ReviewData;
 
+  const someReviewsPresent = responseData.data.length > 0;
+
+  const firstItem = responseData.data[0];
+
+  if (someReviewsPresent && !!firstItem) {
     const body = await marked(firstItem.attributes?.body || "");
 
-    if (firstItem)
-      return {
-        body,
-        ...toReview(firstItem),
-      };
+    return {
+      body,
+      ...toReview(firstItem),
+    };
   }
+  return defaultResponse;
 }
 
 export async function getReviewsList(
   reviewsCount: number,
-  page?: number,
+  page?: number
 ): Promise<{
   reviews: Omit<ReviewDataWithSlug, "body">[];
   pageCount: number;
@@ -69,14 +112,14 @@ export async function getReviewsList(
 
   return {
     reviews: reviews.data?.map(
-      (obj): Omit<ReviewDataWithSlug, "body"> => toReview(obj),
+      (obj): Omit<ReviewDataWithSlug, "body"> => toReview(obj)
     ),
     pageCount: reviews.meta?.pagination.pageCount,
   };
 }
 
 export async function getReviewsSuggestions(
-  query: string,
+  query: string
 ): Promise<SuggestionsReviewInfo[]> {
   const response: ReviewsStrapi = await fetchReviews({
     filters: { title: { $containsi: query } },
@@ -101,32 +144,4 @@ export async function getSlugs() {
     sort: ["publishedAt:desc"],
   });
   return response.data.map((item) => item.attributes.slug) || [];
-}
-
-async function fetchReviews(settings: any) {
-  const response = await fetch(
-    `${CMS_URL}/api/reviews?` +
-      qs.stringify(settings, { encodeValuesOnly: true }),
-    { next: { tags: [CACHE_REVIEW_TAG] } },
-  );
-  return await response.json();
-}
-
-function toReview(
-  responseData: Data<ReviewsAttribute>,
-): Omit<ReviewDataWithSlug, "body"> {
-  return {
-    id: responseData?.id,
-    slug: responseData?.attributes?.slug,
-    title: responseData?.attributes?.title,
-    subtitle: responseData?.attributes?.subtitle,
-    image: CMS_URL + responseData?.attributes?.image.data.attributes.url,
-    date: responseData?.attributes?.publishedAt,
-    comments: responseData?.attributes?.comments
-      ? responseData?.attributes?.comments?.data.map((comment) => ({
-          id: comment.id,
-          ...comment.attributes,
-        }))
-      : [],
-  };
 }

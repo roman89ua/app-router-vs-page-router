@@ -7,7 +7,7 @@ export const useIsClient = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined" && !isClient) setIsClient(true);
-  }, []);
+  }, [isClient]);
 
   return isClient;
 };

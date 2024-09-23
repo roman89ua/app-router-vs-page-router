@@ -15,11 +15,9 @@ export default async function Home() {
   const { reviews } = await getReviewsList(ITEMS_PER_PAGE);
 
   return (
-    <section className="m-auto">
-      <BiggestHeading className="mb-4">Latest reviews</BiggestHeading>
-      <div className="flex justify-start">
-        <ReviewsList reviews={reviews} />
-      </div>
+    <section className='m-auto'>
+      <BiggestHeading className='mb-4'>Latest reviews</BiggestHeading>
+      <ReviewsList reviews={reviews} />
     </section>
   );
 }
