@@ -24,7 +24,7 @@ describe("BiggestHeading", () => {
     );
     const headingWithPredefinedText = screen.getByText(headingText);
     const headingStyle = window.getComputedStyle(headingWithPredefinedText);
-    expect(headingStyle.color).toBe("blue");
+    expect(headingStyle.color).toBe("red");
   });
   // 'text-red-600' ===  color: rgb(220 38 38) or #DC2626  according to tailwindcss text color https://tailwindcss.com/docs/text-color
 });
