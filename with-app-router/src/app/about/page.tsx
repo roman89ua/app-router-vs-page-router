@@ -1,6 +1,6 @@
-import BiggestHeading from "@/components/BigestHeading";
 import { Metadata } from "next";
 import ShareLinkBtn from "@/components/buttons/ShareLinkBtn";
+import BiggestHeading from "@/components/BiggestHeading";
 
 export const metadata: Metadata = {
   title: "About",

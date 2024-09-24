@@ -1,9 +1,9 @@
-import BiggestHeading from "@/components/BigestHeading";
 import { getReviewsList } from "@/services/reviews.service";
 import { Metadata } from "next";
 import { PaginationBar } from "@/components/PaginationBar";
 import ReviewSearch from "@/components/ReviewSearch";
 import ReviewsList from "@/components/ReviewsList";
+import BiggestHeading from "@/components/BiggestHeading";
 
 // export const dynamic = "force-dynamic";
 

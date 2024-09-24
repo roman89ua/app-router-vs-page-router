@@ -1,5 +1,5 @@
 import AnchorLink from "@/components/AnchorLink";
-import BiggestHeading from "../BigestHeading";
+import BiggestHeading from "@/components/BiggestHeading";
 
 export function MainNavbar() {
   return (

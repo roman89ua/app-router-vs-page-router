@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { MainNavbar } from "@/components/MainNavbar";
 import "./globals.css";
 import Anchor from "@/components/Anchor";
-import BiggestHeading from "@/components/BigestHeading";
 import { exo2, orbitron } from "@/app/fonts";
+import BiggestHeading from "@/components/BiggestHeading";
 
 export const metadata: Metadata = {
   title: {

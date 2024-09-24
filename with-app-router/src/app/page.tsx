@@ -1,7 +1,7 @@
-import BiggestHeading from "@/components/BigestHeading";
 import { getReviewsList } from "@/services/reviews.service";
 import { Metadata } from "next";
 import ReviewsList from "@/components/ReviewsList";
+import BiggestHeading from "@/components/BiggestHeading";
 
 // export const dynamic = "force-dynamic"; //dynamic rendering of the page
 // export const revalidate = 30; //revalidation by type ends

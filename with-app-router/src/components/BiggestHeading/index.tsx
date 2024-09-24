@@ -12,4 +12,8 @@ function BiggestHeading({
   );
 }
 
+BiggestHeading.defaultProps = {
+  className: "",
+};
+
 export default BiggestHeading;

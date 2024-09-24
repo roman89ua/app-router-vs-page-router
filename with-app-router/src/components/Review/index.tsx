@@ -1,9 +1,9 @@
 import React from "react";
-import BiggestHeading from "@/components/BigestHeading";
 import { ReviewData } from "@/components/Review/types";
 import ShareLinkBtn from "@/components/buttons/ShareLinkBtn";
 import Image from "next/image";
 import NoImagePlaceholder from "@/components/shared/NoImagePlacehoder";
+import BiggestHeading from "@/components/BiggestHeading";
 
 function Review({ date, image, title, body, subtitle }: ReviewData) {
   return (
