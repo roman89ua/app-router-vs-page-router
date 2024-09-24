@@ -8,6 +8,8 @@ module.exports = {
     "plugin:react/recommended",
     "airbnb",
     "prettier",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended",
   ],
   plugins: ["prettier"],
   overrides: [

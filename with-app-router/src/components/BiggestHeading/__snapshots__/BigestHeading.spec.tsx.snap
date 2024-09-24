@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BiggestHeading should render h1 with text "Heading text" 1`] = `
+<h1
+  class="font-extrabold text-2xl  "
+>
+  Heading text
+</h1>
+`;
