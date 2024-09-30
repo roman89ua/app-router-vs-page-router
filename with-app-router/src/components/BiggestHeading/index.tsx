@@ -2,7 +2,7 @@ import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 function BiggestHeading({
   children,
-  className,
+  className = "",
   ...restProps
 }: DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>) {
   return (
@@ -11,9 +11,5 @@ function BiggestHeading({
     </h1>
   );
 }
-
-BiggestHeading.defaultProps = {
-  className: "",
-};
 
 export default BiggestHeading;
