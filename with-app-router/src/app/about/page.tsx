@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import ShareLinkBtn from "@/components/buttons/ShareLinkBtn";
 import BiggestHeading from "@/components/BiggestHeading";
+import { dictionary } from "@/components/shared/helpers/dictionary";
 
 export const metadata: Metadata = {
   title: "About",
@@ -9,9 +10,9 @@ export const metadata: Metadata = {
 function AboutPage() {
   return (
     <article>
-      <BiggestHeading>About this site.</BiggestHeading>
+      <BiggestHeading>{dictionary.about.heading}</BiggestHeading>
       <ShareLinkBtn />
-      <p>This web site was created to have practice with Next.js framework.</p>
+      <p>{dictionary.about.paragraph}</p>
     </article>
   );
 }
